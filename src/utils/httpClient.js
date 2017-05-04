@@ -19,8 +19,11 @@ function send (_method, _url, _config, _params, _res, _err) {
   }, _config)
   axios(options)
     .then((res) => {
-      if (res.code === 403) {
+      if (res.data.code === 403) {
         // 未登录，跳转到登录页
+        // location.hash = 'login'
+        console.log(window.Vue)
+        console.log(process)
       }
       _res(res)
     })
