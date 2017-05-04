@@ -2,13 +2,13 @@
 
 > A Vue.js + webpack + vuetify + axios + vue-router project
 > 
-  >webpack bundle your scripts https://webpack.js.org/
-
-  >vuetify vue ui components https://vuetifyjs.com
-
-  >axios Promise based HTTP client for the browser and node.js https://github.com/mzabriskie/axios
-  
-  >vue-router build vue sigle page application https://router.vuejs.org
+>  webpack bundle your scripts https://webpack.js.org/
+>
+>  vuetify vue ui components https://vuetifyjs.com
+>
+>  axios Promise based HTTP client for the browser and node.js https://github.com/mzabriskie/axios
+>  
+>  vue-router build vue sigle page application https://router.vuejs.org
 
 ## Build Setup
 
