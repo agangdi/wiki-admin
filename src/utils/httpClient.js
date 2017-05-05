@@ -51,5 +51,10 @@ export default{
   },
   md5 (str) {
     return md5(str)
+  },
+  logout () {
+    localStorage.removeItem(wikiConst.email)
+    localStorage.removeItem(wikiConst.email)
+    location.hash = '/login'
   }
 }

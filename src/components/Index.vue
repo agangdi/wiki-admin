@@ -4,6 +4,7 @@
     <v-toolbar class="blue-grey">
       <v-toolbar-title>头部</v-toolbar-title>
       <v-btn primary dark @click.native="goLogin" >Login</v-btn>
+      <v-btn primary dark @click.native="Logout" >Logout</v-btn>
     </v-toolbar>
     <main>
       <v-sidebar class="mt-0 scroll-y " :mobileBreakPoint="576" fixed>
@@ -29,7 +30,8 @@
 </template>
 
 <script>
-var mod = {
+import httpClient from '../utils/httpClient'
+export default {
   name: 'app',
   data () {
     return {
@@ -56,16 +58,14 @@ var mod = {
     }
   },
   methods: {
-    init () {
-      console.log('r u loged?')
-    },
     goLogin () {
       location.hash = '/login'
+    },
+    Logout () {
+      httpClient.logout()
     }
   }
 }
-mod.methods.init()
-module.exports = mod
 </script>
 
 <style scoped>
