@@ -2,28 +2,8 @@
 <template>
   <v-app id="example-4" left-fixed-sidebar sidebar-under-toolbar>
     <v-toolbar class="blue-grey">
-      <v-toolbar-side-icon @click.native.stop="nav4 = !nav4" class="hidden-sm-and-up red lighten-4"/>
       <v-toolbar-title>头部</v-toolbar-title>
-      <v-dialog id="logDialog" v-model="logDialog">
-        <v-btn primary dark slot="activator">Login</v-btn>
-        <v-card>
-          <v-card-row>
-            <v-card-title>User Profile</v-card-title>
-          </v-card-row>
-          <v-card-row>
-            <v-card-text>
-              <v-container fluid>
-                <v-text-field label="书名" v-model="name" required />
-                <small>{{ msg }}</small>
-              </v-container>
-            </v-card-text>
-          </v-card-row>
-          <v-card-row actions>
-            <v-btn class="blue--text darken-1" flat @click.native="logDialog = false">Close</v-btn>
-            <v-btn class="blue--text darken-1" flat @click.native="loginSub">Save</v-btn>
-          </v-card-row>
-        </v-card>
-      </v-dialog>
+      <v-btn primary dark @click.native="goLogin" >Login</v-btn>
     </v-toolbar>
     <main>
       <v-sidebar class="mt-0 scroll-y " :mobileBreakPoint="576" fixed>
@@ -65,22 +45,22 @@ var mod = {
         {
           url: '/chapter',
           text: 'chapter'
+        },
+        {
+          url: '/user',
+          text: '用户管理'
         }
       ],
-      logDialog: false,
       name: '',
       msg: ''
     }
   },
   methods: {
-    login () {
-      this.logDialog = true
-    },
-    loginSub () {
-      this.logDialog = false
-    },
     init () {
       console.log('r u loged?')
+    },
+    goLogin () {
+      location.hash = '/login'
     }
   }
 }

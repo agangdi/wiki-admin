@@ -9,8 +9,8 @@
         <v-card-text>
           <v-container fluid>
             <v-text-field label="Email" v-model="email" required />
-            <v-text-field label="Password" v-model="password" required />
-            <small>{{ msg }}</small>
+            <v-text-field label="Password" v-model="password" type="password" required />
+            <small class="red--text">{{ msg }}</small>
           </v-container>
         </v-card-text>
       </v-card-row>
@@ -22,7 +22,12 @@
 </template>
 
 <script>
-var mod = {
+
+import httpClient from '../utils/httpClient'
+
+import wikiConst from '../utils/wikiConst'
+
+export default {
   name: 'app',
   data () {
     return {
@@ -34,20 +39,37 @@ var mod = {
   },
   methods: {
     loginSub () {
-      console.log(window.history)
-      if (window.history.length > 2) {
-        window.history.go(-1)
-      } else {
-        location.hash = '/'
+      if (this.email === '' || this.password === '') {
+        this.msg = '请填写所有带*选项'
+        return
       }
+      httpClient.post('/login', {
+        email: this.email,
+        password: httpClient.md5(this.password)
+      }, (res) => {
+        if (res.data.code !== 0) {
+          this.msg = '登录失败'
+          return
+        }
+
+        // 将token和email存储于localStorge
+        localStorage.setItem(wikiConst.token, res.data.token)
+        localStorage.setItem(wikiConst.email, this.email)
+
+        if (window.history.length > 2) {
+          window.history.go(-1)
+        } else {
+          location.hash = '/'
+        }
+      }, (err) => {
+        alert(err)
+      })
     },
     init () {
       console.log('r u loged?')
     }
   }
 }
-mod.methods.init()
-module.exports = mod
 </script>
 
 <style scoped>
