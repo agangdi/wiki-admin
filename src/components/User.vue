@@ -23,7 +23,7 @@
       </v-card>
     </v-dialog>
     <v-card id="listCard">
-      <v-toolbar id="listToolbar" class="light-blue">
+      <v-toolbar class="light-blue listToolbar">
         <v-toolbar-title>用户列表</v-toolbar-title>
       </v-toolbar>
       <v-list two-line subheader>
@@ -114,9 +114,5 @@ export default {
   min-width: 325px;
   width: auto;
   margin: 0 auto;
-}
-#listToolbar {
-  height: 42px;
-  padding: 15px;
 }
 </style>

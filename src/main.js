@@ -7,6 +7,7 @@ import Vuetify from 'vuetify'
 
 // load vuetify style
 require('./stylus/main.styl')
+require('./stylus/global.less')
 
 Vue.use(Vuetify)
 
