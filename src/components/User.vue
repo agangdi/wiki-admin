@@ -22,6 +22,26 @@
         </v-card-row>
       </v-card>
     </v-dialog>
+    <v-card id="listCard">
+      <v-toolbar id="listToolbar" class="light-blue">
+        <v-toolbar-title>用户列表</v-toolbar-title>
+      </v-toolbar>
+      <v-list two-line subheader>
+        <v-list-item v-for="item in list" v-bind:key="item.title">
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.name}}</v-list-tile-title>
+              <v-list-tile-sub-title>{{ item.email}}</v-list-tile-sub-title>
+            </v-list-tile-content>
+            <v-list-tile-action>
+              <v-btn icon ripple>
+                <v-icon class="grey--text text--lighten-1">删除</v-icon>
+              </v-btn>
+            </v-list-tile-action>
+          </v-list-tile>
+        </v-list-item>
+      </v-list>
+    </v-card>
   </div>
 </template>
 
@@ -67,6 +87,7 @@ export default {
         email: this.email,
         password: httpClient.md5(this.password)
       }, (res) => {
+        this.fetchData()
         this.close()
       }, (err) => {
         console.log(err)
@@ -75,7 +96,7 @@ export default {
     fetchData () {
       httpClient.get('/user', {},
         (res) => {
-          this.list = res.data
+          this.list = res.data.data
           console.log(res)
         }, (err) => {
           console.log(err)
@@ -84,3 +105,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.toolbar__title:first-child {
+  padding-left: 12px;
+}
+#listCard {
+  min-width: 325px;
+  width: auto;
+  margin: 0 auto;
+}
+#listToolbar {
+  height: 42px;
+  padding: 15px;
+}
+</style>
