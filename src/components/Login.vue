@@ -8,8 +8,8 @@
       <v-card-row>
         <v-card-text>
           <v-container fluid>
-            <v-text-field label="Email" v-model="email" required />
-            <v-text-field label="Password" v-model="password" type="password" required />
+            <v-text-field label="Email" @keyup.enter.native="loginSub" v-model="email" required />
+            <v-text-field label="Password" @keyup.enter.native="loginSub" v-model="password" type="password" required />
             <small class="red--text">{{ msg }}</small>
           </v-container>
         </v-card-text>
@@ -52,8 +52,10 @@ export default {
           return
         }
 
+        console.log(res.data.data)
+        console.log(res.data.data.token)
         // 将token和email存储于localStorge
-        localStorage.setItem(wikiConst.token, res.data.token)
+        localStorage.setItem(wikiConst.token, res.data.data.token)
         localStorage.setItem(wikiConst.email, this.email)
 
         if (window.history.length > 2) {

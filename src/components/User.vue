@@ -9,9 +9,9 @@
         <v-card-row>
           <v-card-text>
             <v-container fluid>
-              <v-text-field label="Name" v-model="name" required />
-              <v-text-field label="Email" v-model="email" required />
-              <v-text-field label="Password" v-model="password" type="password" required />
+              <v-text-field label="Name" @keyup.enter.native="add" v-model="name" required />
+              <v-text-field label="Email" @keyup.enter.native="add" v-model="email" required />
+              <v-text-field label="Password" @keyup.enter.native="add" v-model="password" type="password" required />
               <small class="red--text">{{ msg }}</small>
             </v-container>
           </v-card-text>
@@ -22,7 +22,7 @@
         </v-card-row>
       </v-card>
     </v-dialog>
-    <v-card id="listCard">
+    <v-card class="listCard">
       <v-toolbar class="light-blue listToolbar">
         <v-toolbar-title>用户列表</v-toolbar-title>
       </v-toolbar>
@@ -75,6 +75,7 @@ export default {
   methods: {
     close () {
       this.addUserDialog = false
+      return this.addUserDialog
     },
     add () {
       if (this.name === '' || this.email === '' || this.password === '') {
@@ -88,10 +89,11 @@ export default {
         password: httpClient.md5(this.password)
       }, (res) => {
         this.fetchData()
-        this.close()
       }, (err) => {
         console.log(err)
       })
+      this.close()
+      return
     },
     fetchData () {
       httpClient.get('/user', {},
@@ -107,12 +109,4 @@ export default {
 </script>
 
 <style scoped>
-.toolbar__title:first-child {
-  padding-left: 12px;
-}
-#listCard {
-  min-width: 325px;
-  width: auto;
-  margin: 0 auto;
-}
 </style>

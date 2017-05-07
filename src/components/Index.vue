@@ -1,9 +1,8 @@
 
 <template>
   <v-app id="example-4" left-fixed-sidebar sidebar-under-toolbar>
-    <v-toolbar class="blue-grey">
+    <v-toolbar class="blue-grey header">
       <v-toolbar-title>头部</v-toolbar-title>
-      <v-btn primary dark @click.native="goLogin" >Login</v-btn>
       <v-btn primary dark @click.native="Logout" >Logout</v-btn>
     </v-toolbar>
     <main>
@@ -43,10 +42,6 @@ export default {
         {
           url: '/book',
           text: 'book'
-        },
-        {
-          url: '/chapter',
-          text: 'chapter'
         },
         {
           url: '/user',

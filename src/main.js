@@ -4,12 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
+import VueSimplemde from 'vue-simplemde'
 
 // load vuetify style
 require('./stylus/main.styl')
 require('./stylus/global.less')
 
 Vue.use(Vuetify)
+Vue.use(VueSimplemde)
 
 Vue.config.productionTip = false
 

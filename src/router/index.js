@@ -5,6 +5,7 @@ import Book from '@/components/Book'
 import Chapter from '@/components/Chapter'
 import Login from '@/components/Login'
 import User from '@/components/User'
+import DetailChapter from '../components/chapters/Detail'
 
 Vue.use(Router)
 
@@ -21,9 +22,14 @@ export default new Router({
           component: Book
         },
         {
-          path: '/chapter',
+          path: '/chapter/:bookId',
           name: 'Chapter',
           component: Chapter
+        },
+        {
+          path: '/chapter/detail/:id',
+          name: 'DetailChapter',
+          component: DetailChapter
         },
         {
           path: '/user',
